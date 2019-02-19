@@ -119,6 +119,3 @@ git克隆远程分支
 	
 创建本地dev分支与远程dev分支关联
 	$ git checkout -b dev origin/dev
-	
-从远程库拉取
-	$ git pull
