@@ -1,0 +1,112 @@
+创建空的git仓库
+	$ mkdir 仓库名
+
+查看仓库所属路径
+	$ pwd
+	
+将仓库添加至git管理（.git文件）
+	$ git init
+	
+将仓库中的文件添加至git管理
+	$ git add readme.txt
+	
+将文件提交至git仓库
+	$ git commit -m "wrote a readme file"
+	
+查看文件状态
+	$ git status
+	
+查看文件的修改记录
+	$ git diff readme.txt
+	
+-------要随时掌握工作区的状态，使用git status命令。
+
+-------如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+
+查看git文件的修改日志
+	$ git log  
+	只在一行显示
+	$ git log --pretty=oneline
+
+用带参数的git log查看分支的合并情况
+	$ git log --graph
+	$ git log --graph --pretty=oneline
+	$ git log --graph --pretty=oneline --abbrev-commit
+
+将git文件退回到某个版本
+	$ git reset --hard commit_id
+	
+查看命令历史
+	$ git reflog
+	
+-------HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+
+-------穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+
+-------要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+将未commit（暂存区）的文件还原到之前的状态
+	$ git checkout -- readme.txt
+
+删除已经commit的文件
+	rm test.txt ---先删除本地test.txt
+	$ git status  ----查看git的状态
+	$ git rm test.txt  ----从git仓库中删除test.txt
+	$ git commit -m "delete test.txt"
+	
+本地仓库管理远程仓库（远程仓库默认名称：origin）
+	$ git remote add origin git@github.com:chengshengqing/learngit.git
+	
+git克隆远程分支
+	$ git clone git@github.com:chengshengqing/gitskills.git
+	
+------要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。
+
+------Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+	
+第一次推送master分支的所有内容
+	$ git push -u origin master
+	
+以后推送修改
+	$ git push origin master
+	
+查看分支
+	$ git branch
+	
+创建分支
+	$ git branch dev
+	
+切换分支
+	$ git checkout master
+	
+创建并切换分支
+	$ git checkout -b dev
+
+合并分支(将dev分支合并到当前分支)
+	$ git merge dev
+
+和并分支是禁用Fast forward模式
+	$ git merge --no-ff -m "merge with no-ff" dev
+	
+删除分支
+	$ git branch -d dev
+	
+把当前工作现场“储藏”起来
+	$ git stash
+
+查看储藏列表
+	$ git stash list
+
+还原储藏并删除储藏文件
+	$ git stash pop
+	
+还原储藏不删除储藏文件
+	$ git stash apply stash{0}
+
+删除储藏文件
+	$ git stash drop stash{0}
+	
+---------------开发一个新feature，最好新建一个分支
+
+强行删除未合并的分支
+	$ git branch -D 分支名称
