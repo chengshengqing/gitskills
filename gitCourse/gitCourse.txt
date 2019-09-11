@@ -110,3 +110,6 @@ git克隆远程分支
 
 强行删除未合并的分支
 	$ git branch -D 分支名称
+
+撤回最近两次本地commit
+	$ git reset --soft HEAD~2
